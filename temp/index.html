@@ -181,8 +181,8 @@ ul {
                         <span style="margin-right: 2em;">慢性</span>
                     </p>
                     <p class="full">
-                        <button id="sel" style="width: 100%;" >查询</button>
-                        <input style="width: 100%;" type="reset" id="reset" value="重置" onmouseup="this.className='out'" />
+                        <button id="sel" style="width: 48%;" >查询</button>
+                        <button id="reset" style="width: 48%;" >重置</button>
                     </p>
                     <p class="full">
                         <label style="width: 30%;text-align: left;"  >报告结果:</label>
@@ -200,15 +200,13 @@ ul {
 <script type="text/javascript">
  $('#sel').on('click', function(e) {
     e.preventDefault();
-    console.log(111)
+    console.log("sel");
     var ph = $("#temp1").val();
     var co3 = $("#temp2").val();
     var co2 = $("#temp3").val();
     var na = $("#temp4").val();
     var cl = $("#temp5").val();
 
-
-    console.log(ph + "==="+ co3);
     if (ph==""||isNaN(ph)||co3==""||isNaN(co3)) {
       //$(".alert").css("display","block");
       alert("输入值有误，请输入数字值~");
@@ -219,8 +217,9 @@ ul {
     }
 
     if (ph>7.45) {
+    var message = "存在酸碱平衡紊乱~";
       if (co3>2) {
-
+         
       }
 
     }
@@ -228,6 +227,24 @@ ul {
 
 
 });
+
+  $('#reset').on('click', function(e) {
+     e.preventDefault();
+     console.log("reset");
+     $("input").val("");
+  });
+
+</script>
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+    
 
 
  // 重写alert 提示框，可以自动消除
@@ -292,6 +309,8 @@ ul {
         document.body.removeChild(document.getElementById("alertbgDiv"));  
         document.body.removeChild(document.getElementById("alertmsgDiv"));  
     }
+
+
 </script>
 
 </html>
