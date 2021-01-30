@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Web简易查询</title>
+    <!-- <link href="https://cdn.bootcss.com/font-awesome/5.10.2/css/fontawesome.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+    <style type="text/css">
+      * {
+    box-sizing: border-box;
+}
+
+body {
+    background: #92bde7;
+    color: #485e74;
+    line-height: 1.6;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    max-width: 1170px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1em;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.brand {
+    text-align: center;
+    margin:0;
+    margin-bottom: 0.5em;
+}
+
+.brand span {
+    color: #fff;
+}
+
+.wrapper {
+    box-shadow: 0 0 20px 0 rgba(72, 94, 116, 0.7);
+}
+
+.wrapper>* {
+    padding: 1em;
+}
+
+.company-info {
+    background: #c9e6ff;
+}
+
+.company-info h3,
+.company-info ul {
+    text-align: center;
+    margin: 0 0 1rem 0;
+}
+
+
+/* form */
+
+.contacts {
+    background: #f9feff;
+}
+
+.contacts form {
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+}
+.contacts form label {
+     width: 20%;
+     text-align: right;
+    display: inline-block;
+}
+
+.contacts form p {
+    margin: 0;
+    margin-bottom: 1em;
+    display: black
+}
+.contacts form button,
+.contacts form input,
+.contacts form textarea {
+    width: 78%;
+    padding: 1em;
+    border: 1px solid #c9e6ff;
+}
+
+.contacts form button {
+    background: #c9e6ff;
+    border: 0;
+}
+
+.contacts form button:hover,
+.contacts form button:focus {
+    background: #92bde7;
+    color: #fff;
+    outline: 0;
+    transition: background-color 2s ease-out;
+}
+
+#reset:hover,
+#reset:focus {
+    background: -internal-light-dark(rgb(239, 239, 239), rgb(74, 74, 74));
+    color: #fff;
+    outline: 0;
+    transition: background-color 2s ease-out;
+}
+
+
+
+
+
+.alert {
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    color: #fff;
+    background: #79c879;
+    display: none;
+}
+
+
+/* 大屏幕尺寸下的样式 */
+
+@media(min-width:700px) {
+    .wrapper {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+    }
+    .wrapper>* {
+        padding: 2em;
+    }
+    .company-info h3,
+    .company-info ul,
+    .brand {
+        text-align: left;
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="brand">简易查询</h1>
+        <div class="wrapper animated bounceInLeft">
+          
+            <div class="contacts">
+                <div class="alert">信息发送成功！</div>
+                <form id="contactForm">
+                    <p>
+                        <label>PH:</label>
+                        <input type="text" name="temp1" id="temp1">
+                    </p>
+                    <p>
+                        <label>HCO3-:</label>
+                        <input type="text" name="temp2" id="temp2">
+                    </p>
+                    <p>
+                        <label>PaCo2(mmHg):</label>
+                        <input type="text" name="temp3" id="temp3">
+                    </p>
+                     <p>
+                        <label>Na+:</label>
+                        <input type="text" name="temp4" id="temp4">
+                    </p>
+                    <p>
+                        <label>CI-:</label>
+                        <input type="text" name="temp5" id="temp5">
+                    </p>
+                    <p>
+                        <label></label>
+                        <input style="width: 5%;" type="radio" name="temp6" id="temp6"/>
+                        <span style="margin-right: 2em;">急性</span>
+                        <input style="width: 5%;" type="radio" name="temp6" id="temp7"/>
+                        <span>慢性</span>
+                    </p>
+                    <p class="full">
+                        <button id="sel" style="width: 100%;" >查询</button>
+                        <input style="width: 100%;" type="reset" id="reset" value="重置" />
+                    </p>
+                    <p class="full">
+                        <label style="width: 30%;text-align: left;"  >报告结果:</label>
+                        <textarea style="height: 30em;width: 100%;" name="message" rows="5" id="message"></textarea>
+                    </p>
+                  
+                </form>
+            </div>
+        </div>
+    </div>
+   
+    
+</body>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript">
+ $('#sel').on('click', function(e) {
+    e.preventDefault();
+    console.log(111)
+    var ph = $("#temp1").val();
+    var co3 = $("#temp2").val();
+    var co2 = $("#temp3").val();
+    var na = $("#temp4").val();
+    var cl = $("#temp5").val();
+
+
+    console.log(ph + "==="+ co3);
+    if (ph==""||isNaN(ph)||co3==""||isNaN(co3)) {
+      //$(".alert").css("display","block");
+      alert("输入值有误，请输入数字值~");
+    }
+    // && 表示并且的意思    || 表示或的意思
+    if (ph >= 7.35 && ph <= 7.45 && co3 >= 35 && co3 <= 45) {
+      $("#message").val("不存在酸碱平衡紊乱~");
+    }
+
+    if (ph>7.45) {
+      if (co3>2) {
+
+      }
+
+    }
+
+
+
+});
+</script>
+
+</html>
